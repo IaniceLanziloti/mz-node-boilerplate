@@ -1,39 +1,42 @@
-import { injectable } from 'inversify'
+import amqplib, { Connection, Channel } from 'amqplib';
+import { injectable } from 'inversify';
 
-import IPublishDTO from '../dtos/IPublishDTO'
-import IQueueProvider from '../interfaces/IQueueProvider'
-
-import amqplib, { Connection, Channel } from 'amqplib'
+import IPublishDTO from '../dtos/IPublishDTO';
+import IQueueProvider from '../interfaces/IQueueProvider';
 
 @injectable()
 export default class RabbitMQQueueProvider implements IQueueProvider {
-  private connection: Connection
-  private channel: Channel
+  private connection: Connection;
+
+  private channel: Channel;
 
   private async prepare(): Promise<void> {
-    const { host, username, password, socketTimeout, vhost } = process.settings.rabbit
-    const connectionString = `amqp://${username}:${password}@${host}/${vhost}?socket_timeout=${socketTimeout}`
+    const { vhost, host, username, password, timeout } = process.settings.queue;
 
-    this.connection = await amqplib.connect(connectionString)
-    this.channel = await this.connection.createChannel()
+    const connectionString = `amqp://${username}:${password}@${host}/${vhost}?socket_timeout=${timeout}`;
+
+    this.connection = await amqplib.connect(connectionString);
+    this.channel = await this.connection.createChannel();
   }
 
   private async gracefulClose(): Promise<void> {
-    await this.channel.close()
-    await this.connection.close()
+    await this.channel.close();
+    await this.connection.close();
   }
 
   async publish({ message, queueName }: IPublishDTO): Promise<boolean> {
-    await this.prepare()
+    await this.prepare();
 
-    await this.channel.assertQueue(queueName, { durable: true })
+    await this.channel.assertQueue(queueName, { durable: true });
 
-    const buffer = Buffer.from(JSON.stringify(message))
+    const buffer = Buffer.from(JSON.stringify(message));
 
-    const response = this.channel.sendToQueue(queueName, buffer, { persistent: true })
+    const response = this.channel.sendToQueue(queueName, buffer, {
+      persistent: true,
+    });
 
-    await this.gracefulClose()
+    await this.gracefulClose();
 
-    return response
+    return response;
   }
 }

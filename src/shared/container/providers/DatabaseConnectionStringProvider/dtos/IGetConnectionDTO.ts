@@ -1,3 +1,3 @@
 export default interface IGetConnectionDTO {
-  companyId?: string
+  companyId?: string;
 }

@@ -17,6 +17,13 @@ const {
   POSTGRES_PASSWORD,
   POSTGRES_DATA_LIMIT,
 
+  QUEUE_VHOST,
+  QUEUE_HOST,
+  QUEUE_PORT,
+  QUEUE_USERNAME,
+  QUEUE_PASSWORD,
+  QUEUE_TIMEOUT,
+
   AWS_SECRET_MANAGER_REGION,
   AWS_SECRET_MANAGER_ID,
 
@@ -40,6 +47,14 @@ process.settings = {
     username: POSTGRES_USERNAME,
     password: POSTGRES_PASSWORD,
     dataLimit: +(POSTGRES_DATA_LIMIT || 1),
+  },
+  queue: {
+    vhost: QUEUE_VHOST,
+    host: QUEUE_HOST,
+    port: +QUEUE_PORT,
+    username: QUEUE_USERNAME,
+    password: QUEUE_PASSWORD,
+    timeout: +QUEUE_TIMEOUT,
   },
   providers: {
     secret: SECRET_PROVIDER || 'env',

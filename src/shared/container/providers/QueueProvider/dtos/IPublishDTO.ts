@@ -1,4 +1,4 @@
 export default interface IPublishDTO {
-  queueName: string
-  message: object
+  queueName: string;
+  message: object;
 }

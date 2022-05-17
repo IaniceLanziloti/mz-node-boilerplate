@@ -21,6 +21,13 @@ declare global {
       POSTGRES_PASSWORD: string;
       POSTGRES_DATA_LIMIT: string;
 
+      QUEUE_VHOST: string;
+      QUEUE_HOST: string;
+      QUEUE_PORT: string;
+      QUEUE_USERNAME: string;
+      QUEUE_PASSWORD: string;
+      QUEUE_TIMEOUT: string;
+
       AWS_SECRET_MANAGER_REGION: string;
       AWS_SECRET_MANAGER_ID: string;
 
@@ -44,6 +51,14 @@ declare global {
           username: string;
           password: string;
           dataLimit: number;
+        };
+        queue: {
+          vhost: string;
+          host: string;
+          port?: number;
+          username: string;
+          password: string;
+          timeout: number;
         };
         providers: {
           secret: 'env' | 'aws';

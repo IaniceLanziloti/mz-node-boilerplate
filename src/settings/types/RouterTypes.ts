@@ -1,6 +1,5 @@
 const ROUTER_TYPES = {
-  GroupingBatchRouter: Symbol.for('GroupingBatchRouter'),
-
+  NotFoundMiddleware: Symbol.for('NotFoundMiddleware'),
   ErrorMiddleware: Symbol.for('ErrorMiddleware'),
 };
 

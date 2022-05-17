@@ -2,14 +2,14 @@
 import { injectable } from 'inversify';
 import AppError from 'shared/errors/AppError';
 
-import { IServer } from '../server/interfaces';
+import { IRouter, IServer } from '../server/interfaces';
 import { Request, Response, Next } from '../server/types';
 
 @injectable()
-export default class ErrorMiddleware {
+class ErrorMiddleware implements IRouter {
   private async errorMiddleWare(
     err: Error,
-    request: Request,
+    _request: Request,
     response: Response,
     // eslint-disable-next-line no-unused-vars
     _: Next
@@ -39,3 +39,5 @@ export default class ErrorMiddleware {
     server.use(this.errorMiddleWare);
   }
 }
+
+export { ErrorMiddleware };

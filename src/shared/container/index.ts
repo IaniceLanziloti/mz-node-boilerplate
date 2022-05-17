@@ -1,8 +1,9 @@
+import DatabaseConnection from '@shared/database';
+import { ErrorMiddleware } from '@shared/http/middlewares/ErrorMiddleware';
+import { NotFoundMiddleware } from '@shared/http/middlewares/NotFoundMiddleware';
+import { IRouter } from '@shared/http/server/interfaces/IRouter';
 import { Container } from 'inversify';
 import { CONNECTION_TYPES, PROVIDER_TYPES, ROUTER_TYPES } from 'settings/types';
-import DatabaseConnection from 'shared/database';
-import ErrorMiddleware from 'shared/http/middlewares/ErrorMiddleware';
-import IRouter from 'shared/http/server/interfaces/IRouter';
 
 import { QueueProvider, StorageProvider } from './providers';
 import DatabaseConnectionStringProvider from './providers/DatabaseConnectionStringProvider';
@@ -16,6 +17,7 @@ container
   .bind<DatabaseConnection>(CONNECTION_TYPES.DatabaseConnection)
   .to(DatabaseConnection);
 
+container.bind<IRouter>(ROUTER_TYPES.NotFoundMiddleware).to(NotFoundMiddleware);
 container.bind<IRouter>(ROUTER_TYPES.ErrorMiddleware).to(ErrorMiddleware);
 
 container
