@@ -1,5 +1,7 @@
-import IPublishDTO from '../dtos/IPublishDTO';
+import { IPublishDTO } from '../dtos/IPublishDTO';
 
-export default interface IQueueProvider {
+interface IQueueProvider {
   publish(params: IPublishDTO): Promise<boolean>;
 }
+
+export { IQueueProvider };

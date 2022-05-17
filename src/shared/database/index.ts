@@ -1,11 +1,11 @@
-import IGetConnectionDTO from '@shared/container/providers/DatabaseConnectionStringProvider/dtos/IGetConnectionDTO';
+import { IGetConnectionDTO } from '@shared/container/providers/DatabaseConnectionStringProvider/dtos/IGetConnectionDTO';
 import { IDatabaseConnectionStringProvider } from '@shared/container/providers/DatabaseConnectionStringProvider/interfaces/IDatabaseConnectionStringProvider';
 import { inject, injectable } from 'inversify';
 import { PROVIDER_TYPES } from 'settings/types';
 import { DataSource } from 'typeorm';
 
 @injectable()
-export default class DatabaseConnection {
+class DatabaseConnection {
   constructor(
     @inject(PROVIDER_TYPES.DatabaseConnectionStringProvider)
     private databaseConnectionStringProvider: IDatabaseConnectionStringProvider
@@ -37,3 +37,5 @@ export default class DatabaseConnection {
     return connection;
   }
 }
+
+export { DatabaseConnection };

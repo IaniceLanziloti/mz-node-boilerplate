@@ -1,11 +1,11 @@
 import amqplib, { Connection, Channel } from 'amqplib';
 import { injectable } from 'inversify';
 
-import IPublishDTO from '../dtos/IPublishDTO';
-import IQueueProvider from '../interfaces/IQueueProvider';
+import { IPublishDTO } from '../dtos/IPublishDTO';
+import { IQueueProvider } from '../interfaces/IQueueProvider';
 
 @injectable()
-export default class RabbitMQQueueProvider implements IQueueProvider {
+class RabbitMQQueueProvider implements IQueueProvider {
   private connection: Connection;
 
   private channel: Channel;
@@ -40,3 +40,5 @@ export default class RabbitMQQueueProvider implements IQueueProvider {
     return response;
   }
 }
+
+export { RabbitMQQueueProvider };

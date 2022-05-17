@@ -25,7 +25,7 @@ interface IUploadConfig {
   };
 }
 
-export default {
+const uploadConfig = {
   driver,
   tmpFolder,
   uploadsFolder,
@@ -49,3 +49,5 @@ export default {
     },
   },
 } as IUploadConfig;
+
+export { uploadConfig };

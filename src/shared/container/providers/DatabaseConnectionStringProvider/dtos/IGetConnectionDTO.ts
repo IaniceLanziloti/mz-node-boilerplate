@@ -1,3 +1,5 @@
-export default interface IGetConnectionDTO {
+interface IGetConnectionDTO {
   companyId?: string;
 }
+
+export { IGetConnectionDTO };

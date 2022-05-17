@@ -1,4 +1,4 @@
-export default interface IStorageProvider {
+interface IStorageProvider {
   saveFile(
     originalFilename: string,
     destinationPath?: string,
@@ -6,3 +6,5 @@ export default interface IStorageProvider {
   ): Promise<string>;
   deleteFile(file: string): Promise<void>;
 }
+
+export { IStorageProvider };

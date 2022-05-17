@@ -1,16 +1,14 @@
 import aws, { SecretsManager } from 'aws-sdk';
 import { injectable } from 'inversify';
-import AppError from 'shared/errors/AppError';
+import { AppError } from 'shared/errors/AppError';
 
-import IGetConnectionDTO from '../dtos/IGetConnectionDTO';
+import { IGetConnectionDTO } from '../dtos/IGetConnectionDTO';
 import { IDatabaseConnectionStringProvider } from '../interfaces/IDatabaseConnectionStringProvider';
 
 const { region, secretName } = process.settings.aws.secretManager;
 
 @injectable()
-export default class AWSSecretManager
-  implements IDatabaseConnectionStringProvider
-{
+class AWSSecretManager implements IDatabaseConnectionStringProvider {
   private client: SecretsManager;
 
   constructor() {
@@ -47,3 +45,5 @@ export default class AWSSecretManager
     }
   }
 }
+
+export { AWSSecretManager };

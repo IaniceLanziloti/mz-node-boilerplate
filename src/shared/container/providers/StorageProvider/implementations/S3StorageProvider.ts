@@ -1,17 +1,17 @@
+import { AppError } from '@shared/errors/AppError';
 import aws, { S3 } from 'aws-sdk';
 import fs from 'fs';
 import mime from 'mime';
 import path from 'path';
-import uploadConfig from 'settings/upload';
-import AppError from 'shared/errors/AppError';
+import { uploadConfig } from 'settings/upload';
 
-import IStorageProvider from '../interfaces/IStorageProvider';
+import { IStorageProvider } from '../interfaces/IStorageProvider';
 
 const { uploadsFolder, tmpFolder } = uploadConfig;
 
 const { region, bucket } = process.settings.aws.s3;
 
-export default class S3StorageProvider implements IStorageProvider {
+class S3StorageProvider implements IStorageProvider {
   private client: S3;
 
   constructor() {
@@ -61,3 +61,5 @@ export default class S3StorageProvider implements IStorageProvider {
       .promise();
   }
 }
+
+export { S3StorageProvider };

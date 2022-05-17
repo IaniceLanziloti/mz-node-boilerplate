@@ -1,7 +1,9 @@
-import RabbitMQQueueProvider from './implementations/RabbitMQQueueProvider';
+import { RabbitMQQueueProvider } from './implementations/RabbitMQQueueProvider';
 
 const providers = {
   rabbitmq: RabbitMQQueueProvider,
 };
 
-export default providers[process.settings.providers.queue];
+const QueueProvider = providers[process.settings.providers.queue];
+
+export { QueueProvider };

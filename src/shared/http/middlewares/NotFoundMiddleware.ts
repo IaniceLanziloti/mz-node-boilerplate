@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-import AppError from 'shared/errors/AppError';
+import { AppError } from 'shared/errors/AppError';
 
 import { IServer } from '../server/interfaces';
 import { Request, Response, Next } from '../server/types';

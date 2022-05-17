@@ -1,6 +1,6 @@
+import { container } from '@shared/container';
+import { Router } from '@shared/http/routes/Router.routes';
 import { injectable } from 'inversify';
-import container from 'shared/container';
-import Router from 'shared/http/routes/Router.routes';
 
 @injectable()
 class BaseServer {

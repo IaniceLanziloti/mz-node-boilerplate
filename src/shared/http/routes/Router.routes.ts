@@ -6,7 +6,7 @@ import { NotFoundMiddleware } from '../middlewares/NotFoundMiddleware';
 import { IRouter, IServer } from '../server/interfaces';
 
 @injectable()
-export default class Router implements IRouter {
+class Router implements IRouter {
   constructor(
     @inject(ROUTER_TYPES.NotFoundMiddleware)
     private notFoundMiddleware: NotFoundMiddleware,
@@ -23,3 +23,5 @@ export default class Router implements IRouter {
     this.errorMiddleware.register(server);
   }
 }
+
+export { Router };

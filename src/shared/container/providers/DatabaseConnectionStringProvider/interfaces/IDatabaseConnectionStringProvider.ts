@@ -1,5 +1,7 @@
-import IGetConnectionDTO from '../dtos/IGetConnectionDTO';
+import { IGetConnectionDTO } from '../dtos/IGetConnectionDTO';
 
-export interface IDatabaseConnectionStringProvider {
+interface IDatabaseConnectionStringProvider {
   getConnectionString(params: IGetConnectionDTO): Promise<string>;
 }
+
+export { IDatabaseConnectionStringProvider };

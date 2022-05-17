@@ -1,14 +1,14 @@
 import fs from 'fs';
 import { injectable } from 'inversify';
 import path from 'path';
-import uploadConfig from 'settings/upload';
+import { uploadConfig } from 'settings/upload';
 
-import IStorageProvider from '../interfaces/IStorageProvider';
+import { IStorageProvider } from '../interfaces/IStorageProvider';
 
 const { tmpFolder, uploadsFolder } = uploadConfig;
 
 @injectable()
-export default class DiskStorageProvider implements IStorageProvider {
+class DiskStorageProvider implements IStorageProvider {
   public async saveFile(
     originalFilename: string,
     destinationPath?: string,
@@ -40,3 +40,4 @@ export default class DiskStorageProvider implements IStorageProvider {
     await fs.promises.unlink(filePath);
   }
 }
+export { DiskStorageProvider };
