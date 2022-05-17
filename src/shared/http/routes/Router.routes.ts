@@ -1,8 +1,7 @@
 import { ROUTER_TYPES } from '@settings/types';
 import { inject, injectable } from 'inversify';
 
-import { ErrorMiddleware } from '../middlewares/ErrorMiddleware';
-import { NotFoundMiddleware } from '../middlewares/NotFoundMiddleware';
+import { ErrorMiddleware, NotFoundMiddleware } from '../middlewares';
 import { IRouter, IServer } from '../server/interfaces';
 
 @injectable()

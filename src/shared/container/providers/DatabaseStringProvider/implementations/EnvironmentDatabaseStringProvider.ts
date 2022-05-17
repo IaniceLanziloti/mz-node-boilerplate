@@ -1,10 +1,12 @@
 import { injectable } from 'inversify';
 
-import { IGetConnectionDTO } from '../dtos/IGetConnectionDTO';
-import { IDatabaseConnectionStringProvider } from '../interfaces/IDatabaseConnectionStringProvider';
+import { IGetConnectionDTO } from '../dtos';
+import { IDatabaseStringProvider } from '../interfaces';
 
 @injectable()
-class Environment implements IDatabaseConnectionStringProvider {
+class EnvironmentDatabaseStringProvider
+  implements IDatabaseStringProvider
+{
   async getConnectionString(_: IGetConnectionDTO): Promise<string> {
     const { host, port, database, username, password } = process.settings.db;
 
@@ -12,4 +14,4 @@ class Environment implements IDatabaseConnectionStringProvider {
   }
 }
 
-export { Environment };
+export { EnvironmentDatabaseStringProvider };

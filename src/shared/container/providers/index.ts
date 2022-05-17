@@ -1,3 +1,3 @@
 export * from './QueueProvider';
 export * from './StorageProvider';
-export * from './DatabaseConnectionStringProvider';
+export * from './DatabaseStringProvider';

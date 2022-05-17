@@ -1,5 +1,4 @@
-import { DiskStorageProvider } from './implementations/DiskStorageProvider';
-import { S3StorageProvider } from './implementations/S3StorageProvider';
+import { DiskStorageProvider, S3StorageProvider } from './implementations';
 
 const providers = {
   disk: DiskStorageProvider,

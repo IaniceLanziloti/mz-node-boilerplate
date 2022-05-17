@@ -1,5 +1,5 @@
 import { container } from '@shared/container';
-import { Router } from '@shared/http/routes/Router.routes';
+import { Router } from '@shared/http/routes';
 import { injectable } from 'inversify';
 
 @injectable()

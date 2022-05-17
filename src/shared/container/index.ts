@@ -1,18 +1,17 @@
 import { DatabaseConnection } from '@shared/database';
-import { ErrorMiddleware } from '@shared/http/middlewares/ErrorMiddleware';
-import { NotFoundMiddleware } from '@shared/http/middlewares/NotFoundMiddleware';
-import { IRouter } from '@shared/http/server/interfaces/IRouter';
+import { ErrorMiddleware, NotFoundMiddleware } from '@shared/http/middlewares';
+import { IRouter } from '@shared/http/server/interfaces';
 import { Container } from 'inversify';
 import { CONNECTION_TYPES, PROVIDER_TYPES, ROUTER_TYPES } from 'settings/types';
 
 import {
   QueueProvider,
   StorageProvider,
-  DatabaseConnectionStringProvider,
+  DatabaseStringProvider,
 } from './providers';
-import { IDatabaseConnectionStringProvider } from './providers/DatabaseConnectionStringProvider/interfaces/IDatabaseConnectionStringProvider';
-import { IQueueProvider } from './providers/QueueProvider/interfaces/IQueueProvider';
-import { IStorageProvider } from './providers/StorageProvider/interfaces/IStorageProvider';
+import { IDatabaseStringProvider } from './providers/DatabaseStringProvider/interfaces';
+import { IQueueProvider } from './providers/QueueProvider/interfaces';
+import { IStorageProvider } from './providers/StorageProvider/interfaces';
 
 const container = new Container();
 
@@ -24,10 +23,8 @@ container.bind<IRouter>(ROUTER_TYPES.NotFoundMiddleware).to(NotFoundMiddleware);
 container.bind<IRouter>(ROUTER_TYPES.ErrorMiddleware).to(ErrorMiddleware);
 
 container
-  .bind<IDatabaseConnectionStringProvider>(
-    PROVIDER_TYPES.DatabaseConnectionStringProvider
-  )
-  .to(DatabaseConnectionStringProvider);
+  .bind<IDatabaseStringProvider>(PROVIDER_TYPES.DatabaseStringProvider)
+  .to(DatabaseStringProvider);
 container
   .bind<IStorageProvider>(PROVIDER_TYPES.StorageProvider)
   .to(StorageProvider);

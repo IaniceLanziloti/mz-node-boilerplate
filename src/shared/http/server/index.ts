@@ -1,6 +1,4 @@
-import { ExpressServer } from './implementations/ExpressServer';
-import { FastifyServer } from './implementations/FastifyServer';
-import { RestifyServer } from './implementations/RestfyServer';
+import { ExpressServer, FastifyServer, RestifyServer } from './implementations';
 
 export class ServerFactory {
   public static create(): FastifyServer | RestifyServer | ExpressServer {

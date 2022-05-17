@@ -1,7 +1,5 @@
 const PROVIDER_TYPES = {
-  DatabaseConnectionStringProvider: Symbol.for(
-    'DatabaseConnectionStringProvider'
-  ),
+  DatabaseStringProvider: Symbol.for('DatabaseStringProvider'),
   QueueProvider: Symbol.for('QueueProvider'),
   StorageProvider: Symbol.for('StorageProvider'),
 };

@@ -1,5 +1,3 @@
-const REPOSITORY_TYPES = {
-  GroupingBatchRepository: Symbol.for('GroupingBatchRepository'),
-};
+const REPOSITORY_TYPES = {};
 
 export { REPOSITORY_TYPES };

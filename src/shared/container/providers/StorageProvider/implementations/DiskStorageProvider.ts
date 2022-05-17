@@ -3,7 +3,7 @@ import { injectable } from 'inversify';
 import path from 'path';
 import { uploadConfig } from 'settings/upload';
 
-import { IStorageProvider } from '../interfaces/IStorageProvider';
+import { IStorageProvider } from '../interfaces';
 
 const { tmpFolder, uploadsFolder } = uploadConfig;
 

@@ -1,5 +1,5 @@
-import { IGetConnectionDTO } from '@shared/container/providers/DatabaseConnectionStringProvider/dtos/IGetConnectionDTO';
-import { IDatabaseConnectionStringProvider } from '@shared/container/providers/DatabaseConnectionStringProvider/interfaces/IDatabaseConnectionStringProvider';
+import { IGetConnectionDTO } from '@shared/container/providers/DatabaseStringProvider/dtos';
+import { IDatabaseStringProvider } from '@shared/container/providers/DatabaseStringProvider/interfaces';
 import { inject, injectable } from 'inversify';
 import { PROVIDER_TYPES } from 'settings/types';
 import { DataSource } from 'typeorm';
@@ -7,8 +7,8 @@ import { DataSource } from 'typeorm';
 @injectable()
 class DatabaseConnection {
   constructor(
-    @inject(PROVIDER_TYPES.DatabaseConnectionStringProvider)
-    private databaseConnectionStringProvider: IDatabaseConnectionStringProvider
+    @inject(PROVIDER_TYPES.DatabaseStringProvider)
+    private DatabaseStringProvider: IDatabaseStringProvider
   ) {
     //
   }
@@ -16,9 +16,9 @@ class DatabaseConnection {
   public async getConnection({
     companyId = '',
   }: IGetConnectionDTO): Promise<DataSource> {
-    const url = await this.databaseConnectionStringProvider.getConnectionString(
-      { companyId }
-    );
+    const url = await this.DatabaseStringProvider.getConnectionString({
+      companyId,
+    });
 
     const ssl =
       process.settings.app.nodeEnv === 'development'
