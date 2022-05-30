@@ -2,8 +2,12 @@ import { DatabaseConnection } from '@shared/database';
 import { ErrorMiddleware, NotFoundMiddleware } from '@shared/http/middlewares';
 import { IRouter } from '@shared/http/server/interfaces';
 import { Container } from 'inversify';
-import { CONNECTION_TYPES, PROVIDER_TYPES, ROUTER_TYPES } from 'settings/types';
 
+import {
+  APPLICATION_BASE,
+  APPLICATION_PROVIDERS,
+  APPLICATION_ROUTES,
+} from './identifiers';
 import {
   QueueProvider,
   StorageProvider,
@@ -16,18 +20,22 @@ import { IStorageProvider } from './providers/StorageProvider/interfaces';
 const container = new Container();
 
 container
-  .bind<DatabaseConnection>(CONNECTION_TYPES.DatabaseConnection)
+  .bind<DatabaseConnection>(APPLICATION_BASE.DatabaseConnection)
   .to(DatabaseConnection);
 
-container.bind<IRouter>(ROUTER_TYPES.NotFoundMiddleware).to(NotFoundMiddleware);
-container.bind<IRouter>(ROUTER_TYPES.ErrorMiddleware).to(ErrorMiddleware);
+container
+  .bind<IRouter>(APPLICATION_ROUTES.NotFoundMiddleware)
+  .to(NotFoundMiddleware);
+container.bind<IRouter>(APPLICATION_ROUTES.ErrorMiddleware).to(ErrorMiddleware);
 
 container
-  .bind<IDatabaseStringProvider>(PROVIDER_TYPES.DatabaseStringProvider)
+  .bind<IDatabaseStringProvider>(APPLICATION_PROVIDERS.DatabaseStringProvider)
   .to(DatabaseStringProvider);
 container
-  .bind<IStorageProvider>(PROVIDER_TYPES.StorageProvider)
+  .bind<IStorageProvider>(APPLICATION_PROVIDERS.StorageProvider)
   .to(StorageProvider);
-container.bind<IQueueProvider>(PROVIDER_TYPES.QueueProvider).to(QueueProvider);
+container
+  .bind<IQueueProvider>(APPLICATION_PROVIDERS.QueueProvider)
+  .to(QueueProvider);
 
 export { container };

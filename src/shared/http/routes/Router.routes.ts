@@ -1,4 +1,4 @@
-import { ROUTER_TYPES } from '@settings/types';
+import { APPLICATION_ROUTES } from '@shared/container/identifiers';
 import { inject, injectable } from 'inversify';
 
 import { ErrorMiddleware, NotFoundMiddleware } from '../middlewares';
@@ -7,10 +7,10 @@ import { IRouter, IServer } from '../server/interfaces';
 @injectable()
 class Router implements IRouter {
   constructor(
-    @inject(ROUTER_TYPES.NotFoundMiddleware)
+    @inject(APPLICATION_ROUTES.NotFoundMiddleware)
     private notFoundMiddleware: NotFoundMiddleware,
 
-    @inject(ROUTER_TYPES.ErrorMiddleware)
+    @inject(APPLICATION_ROUTES.ErrorMiddleware)
     private errorMiddleware: ErrorMiddleware
   ) {
     //

@@ -1,13 +1,13 @@
+import { APPLICATION_PROVIDERS } from '@shared/container/identifiers';
 import { IGetConnectionDTO } from '@shared/container/providers/DatabaseStringProvider/dtos';
 import { IDatabaseStringProvider } from '@shared/container/providers/DatabaseStringProvider/interfaces';
 import { inject, injectable } from 'inversify';
-import { PROVIDER_TYPES } from 'settings/types';
 import { DataSource } from 'typeorm';
 
 @injectable()
 class DatabaseConnection {
   constructor(
-    @inject(PROVIDER_TYPES.DatabaseStringProvider)
+    @inject(APPLICATION_PROVIDERS.DatabaseStringProvider)
     private DatabaseStringProvider: IDatabaseStringProvider
   ) {
     //

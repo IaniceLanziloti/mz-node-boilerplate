@@ -1,7 +1,7 @@
-const PROVIDER_TYPES = {
+const APPLICATION_PROVIDERS = {
   DatabaseStringProvider: Symbol.for('DatabaseStringProvider'),
   QueueProvider: Symbol.for('QueueProvider'),
   StorageProvider: Symbol.for('StorageProvider'),
 };
 
-export { PROVIDER_TYPES };
+export { APPLICATION_PROVIDERS };
